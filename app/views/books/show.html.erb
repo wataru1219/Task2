@@ -1,0 +1,18 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
+<p>
+<strong>Title：</strong>
+<!--@book=Book.find(params[:id]) コントローラーで定義したインスタンス変数-->
+<%= @book.title %>
+</p>
+
+<p>
+<strong>Body：</strong>
+<%= @book.body %>
+</p>
+
+<!--変数が代入されている＠bookを使う-->
+<%= link_to 'Edit' , edit_book_path(@book.id) %>
+<%= link_to 'Back' , books_path %>

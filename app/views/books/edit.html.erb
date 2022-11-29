@@ -1,0 +1,32 @@
+
+
+<h1>Editing Book</h1>
+<!--投稿済みのデータを編集するので、保存されているデータが必要-->
+<!--form_withを利用するとインスタンス変数を渡すだけで、インスタンス変数内のモデルを解読して、投稿したタイトルと内容を代入してくれる-->
+<% if @book.errors.any? %>
+  <%= @book.errors.count %> errors prohibited this book from being saved:
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @book do |f| %>
+
+  <!--単一行のテキストフィールド-->
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+
+  <!--複数行のテキストフィールド-->
+  <h4>Body</h4>
+  <%= f.text_area :body %>
+
+  <!--送信ボタン-->
+  <br><%= f.submit 'Update Book' %>
+
+  <!--変数が代入されている＠bookを使う-->
+  <br><%= link_to 'Show' , book_path(@book.id) %>
+
+  <%= link_to 'Back' , books_path %>
+<% end %>
